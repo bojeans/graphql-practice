@@ -1,6 +1,5 @@
 const express = require("express");
-require("dotenv").config();
-const PORT = process.env.PORT || 5000;
+const PORT = 5000;
 
 // Middleware
 const app = express();
