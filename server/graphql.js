@@ -20,7 +20,6 @@ const apolloServer = new ApolloServer({
   resolvers,
 });
 
-// port
 apolloServer.listen(PORT, () => {
-  console.log(`this is your graphql server working on ${PORT}`);
+  console.log(`server is listening on ${PORT}`);
 });
