@@ -1,19 +1,18 @@
+// imports
 const express = require("express");
 const { ApolloServer } = require("apollo-server-express");
 const http = require("http");
 const PORT = 5000;
+const path = require("path");
+const { makeExecutableSchema } = require("graphql-tools");
+const { mergeTypeDefs, mergeResolvers } = require("@graphql-tools/merge");
+const { loadFilesSync } = require("@graphql-tools/load-files");
 
-const typeDefs = `type Query {
-  totalPosts: Int!
-}`;
-// resolvers
-const resolvers = {
-  Query: {
-    totalPosts: () => {
-      return 42;
-    },
-  },
-};
+// usage
+const typeDefs = mergeTypeDefs(loadFilesSync(path.join(__dirname, "./schema")));
+const resolvers = mergeResolvers(
+  loadFilesSync(path.join(__dirname, "./resolvers"))
+);
 
 // graphql server
 const apolloServer = new ApolloServer({
